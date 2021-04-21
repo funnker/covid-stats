@@ -6,9 +6,11 @@ $.ajax({
         console.log(responce)
         for(var i = 0; i < responce.Countries.length; i++)
         {
-            var tablerow = `<tr> <td>${responce.Countries[i].Country}</td> </tr>`
-            $('#tbody').append(tablerow)
+            var totalActive = responce.Countries[i].TotalConfirmed - responce.Countries[i].TotalDeaths - responce.Countries[i].TotalRecovered
+            var tableRow = `<tr> <td>${responce.Countries[i].Country}</td> <td>${responce.Countries[i].TotalConfirmed}</td> <td>${totalActive}</td> <td>${responce.Countries[i].TotalRecovered}</td> <td>${responce.Countries[i].TotalDeaths}</td></tr>`
+            $('#tbody').append(tableRow)
         }
+        $('#covid-table').DataTable()
     },
     error : function(error)
     {
